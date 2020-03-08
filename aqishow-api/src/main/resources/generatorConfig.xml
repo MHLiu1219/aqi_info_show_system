@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+    <!--
+	  	targetRuntime: 执行生成的逆向工程的版本
+	  			MyBatis3Simple: 生成基本的CRUD
+	  			MyBatis3: 生成带条件的CRUD
+    -->
+    <context id="DB2Tables" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <!-- beginningDelimiter和endingDelimiter：指明数据库的用于标记数据库对象名的符号，比如ORACLE就是双引号，MYSQL默认是`反引号； -->
+        <property name="beginningDelimiter" value="`" />
+        <property name="endingDelimiter" value="`" />
+
+        <!-- 指定生成 Mapper 的继承模板 -->
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="tk.mybatis.mapper.common.Mapper" />
+        </plugin>
+
+        <!-- 生成 JavaBean 对象重写 toString方法 -->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+
+        <!-- 生成 JavaBean 对象继承 Serializable 类 -->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+
+        <!-- 生成 JavaBean 对象重写 equals 和 hashCode 方法 -->
+        <!-- <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" /> -->
+
+        <!-- jdbc 连接配置 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/aqi_info_show_system?characterEncoding=utf-8&amp;useSSL=false"
+                        userId="root"
+                        password="">
+        </jdbcConnection>
+
+        <!--javaBean的生成策略-->
+        <javaModelGenerator targetPackage="example.bean" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <!--SQL映射文件的生成策略 ，（Mapper接口的生成策略为ANNOTATEDMAPPER才需要用到） -->
+        <!--<sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources" >
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>-->
+
+        <!--Mapper接口的生成策略（xml XMLMAPPER或者 注释 ANNOTATEDMAPPER）-->
+        <javaClientGenerator targetPackage="example.mapper" targetProject="src/main/java"
+                             type="ANNOTATEDMAPPER">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <!--逆向分析的表 tableName：数据库表名，domainObjectName：生成文件名 ，schema：数据源
+            Mysql 配置 ：<generatedKey column="id" sqlStatement="Mysql" identity="true" />
+            Oracle 配置 ：<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>
+        -->
+        <table tableName="aqi_gzaqi_info">
+        </table>
+        <table tableName="aqi_gzaqi_station">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"></generatedKey>
+        </table>
+        <table tableName="aqi_waqi_history_info">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"></generatedKey>
+        </table>
+        <table tableName="aqi_waqi_info">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"></generatedKey>
+        </table>
+        <table tableName="aqi_waqi_station">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"></generatedKey>
+        </table>
+
+    </context>
+</generatorConfiguration>
