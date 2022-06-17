@@ -22,7 +22,7 @@
         <mapper-start.version>2.1.5</mapper-start.version>
         <dubbo-start.version>0.2.0</dubbo-start.version>
 
-        <fastjson.version>1.2.66</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
         <commons-beanutils.version>1.9.4</commons-beanutils.version>
 
         <webmagic.version>0.7.3</webmagic.version>
